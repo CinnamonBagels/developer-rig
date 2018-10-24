@@ -217,25 +217,32 @@ export class RigComponent extends React.Component<Props, State> {
     const { configurations, currentProject } = this.state;
     return (
       <div className="rig-container">
-        <RigNav
-          currentProjectIndex={this.currentProjectIndex}
-          projects={this.state.projects}
-          createNewProject={this.showCreateProjectDialog}
-          selectProject={this.selectProject}
-          manifest={currentProject ? currentProject.manifest : null}
-          selectedView={this.state.selectedView}
-          deleteProject={this.deleteProject}
-          viewerHandler={this.viewerHandler}
-          error={this.state.error}
-        />
         {this.state.error ? (
           <label>Something went wrong: {this.state.error}</label>
         ) : !this.props.session ? (
           <SignInDialog />
+        ) : !currentProject ? (
+          <CreateProjectDialog
+            mustSave={true}
+            userId={this.state.userId}
+            closeHandler={this.closeProjectDialog}
+            saveHandler={this.createProject}
+          />
         ) : (
           <>
+            <RigNav
+              currentProjectIndex={this.currentProjectIndex}
+              projects={this.state.projects}
+              createNewProject={this.showCreateProjectDialog}
+              selectProject={this.selectProject}
+              manifest={currentProject.manifest}
+              selectedView={this.state.selectedView}
+              deleteProject={this.deleteProject}
+              viewerHandler={this.viewerHandler}
+              error={this.state.error}
+            />
             {this.state.selectedView === NavItem.ProductManagement && <ProductManagementViewContainer clientId={currentProject.manifest.id} />}
-            {this.state.selectedView === NavItem.ProjectOverview && currentProject && <ProjectView
+            {this.state.selectedView === NavItem.ProjectOverview && <ProjectView
               key={`ProjectView${this.currentProjectIndex}`}
               rigProject={currentProject}
               userId={this.state.userId}
@@ -249,7 +256,7 @@ export class RigComponent extends React.Component<Props, State> {
               userId={this.state.userId}
               saveHandler={this.saveConfiguration}
             />}
-            {configurations && currentProject && <ExtensionViewContainer
+            {configurations && <ExtensionViewContainer
               key={`ExtensionViewContainer${this.state.extensionsViewContainerKey}`}
               configurations={configurations}
               isDisplayed={this.state.selectedView === NavItem.ExtensionViews}
@@ -261,9 +268,8 @@ export class RigComponent extends React.Component<Props, State> {
               openEditViewHandler={this.openEditViewHandler}
               openExtensionViewHandler={this.openExtensionViewHandler}
             />}
-            {(!currentProject || this.state.showingCreateProjectDialog) && <CreateProjectDialog
+            {this.state.showingCreateProjectDialog && <CreateProjectDialog
               userId={this.state.userId}
-              mustSave={!currentProject}
               closeHandler={this.closeProjectDialog}
               saveHandler={this.createProject}
             />}
