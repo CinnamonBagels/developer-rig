@@ -57,7 +57,7 @@ export class CreateProjectDialog extends React.Component<Props, State>{
       isLocal: true,
       projectFolderPath: '',
       manifest: {} as ExtensionManifest,
-      secret: process.env.EXT_SECRET || '',
+      secret: process.env.EXT_SECRET,
       frontendFolderName: '',
       frontendCommand: '',
       backendCommand: '',
@@ -162,12 +162,13 @@ export class CreateProjectDialog extends React.Component<Props, State>{
   }
 
   private constructBackendCommand(example: Example) {
-    if (this.state.codeGenerationOption === CodeGenerationOption.Example && example.backendCommand) {
+    const { codeGenerationOption, rigProject: { isLocal, manifest: { id: clientId }, secret } } = this.state;
+    if (codeGenerationOption === CodeGenerationOption.Example && example.backendCommand) {
       let backendCommand = example.backendCommand
-        .replace('{clientId}', this.state.rigProject.manifest.id)
-        .replace('{secret}', this.state.rigProject.secret)
+        .replace('{clientId}', clientId)
+        .replace('{secret}', secret)
         .replace('{ownerId}', this.props.userId);
-      if (this.state.rigProject.isLocal) {
+      if (isLocal) {
         backendCommand += ' -l';
       }
       return backendCommand;
@@ -180,7 +181,6 @@ export class CreateProjectDialog extends React.Component<Props, State>{
       try {
         this.setState({ errorMessage: 'Creating your project...' });
         if (this.state.rigProject.isLocal) {
-          this.state.rigProject.secret = this.state.rigProject.secret || 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk';
           const ownerName: string = JSON.parse(localStorage.getItem(LocalStorageKeys.RigLogin)).login;
           this.state.rigProject.manifest = generateManifest('https://localhost.rig.twitch.tv:8080',
             ownerName, this.state.localName.trim(), this.getTypes());
