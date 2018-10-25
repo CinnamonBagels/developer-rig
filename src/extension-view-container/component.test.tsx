@@ -21,7 +21,7 @@ const setupShallow = setupShallowTest(ExtensionViewContainer, () => ({
   mode: ExtensionMode.Viewer,
   extensionViews: createViewsForTest(0, '', ''),
   deleteExtensionViewHandler: jest.fn(),
-  openExtensionViewHandler: jest.fn(),
+  createExtensionViewHandler: jest.fn(),
   openEditViewHandler: jest.fn(),
   extension: createExtensionForTest(),
   isLocal: true,
@@ -33,7 +33,7 @@ describe('<ExtensionViewContainer />', () => {
   it('openExtensionViewHandler is called when the create button is clicked', () => {
     const { wrapper } = setupShallow();
     wrapper.find('ExtensionViewButton').simulate('click');
-    expect(wrapper.instance().props.openExtensionViewHandler).toHaveBeenCalled();
+    expect(wrapper.instance().state.showingExtensionsViewDialog).toBe(true);
   });
 
   describe('when in viewer mode', () => {

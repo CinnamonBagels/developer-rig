@@ -9,6 +9,7 @@ import { ExtensionViewButton } from '../extension-view-button';
 import { RigExtensionView } from '../core/models/rig';
 import { ExtensionManifest } from '../core/models/manifest';
 import { createExtensionObject } from '../util/extension';
+import { ExtensionViewDialog, ExtensionViewDialogState } from '../extension-view-dialog';
 
 interface Props {
   configurations: Configurations;
@@ -19,11 +20,12 @@ interface Props {
   secret: string;
   deleteExtensionViewHandler: (id: string) => void;
   openEditViewHandler?: (id: string) => void;
-  openExtensionViewHandler: Function;
+  createExtensionViewHandler: (extensionViewDialogState: ExtensionViewDialogState) => Promise<void>;
 }
 
 interface State {
   mockTriggersEnabled: boolean;
+  showingExtensionsViewDialog: boolean;
 }
 
 const ConfigNames: { [key: string]: string; } = {
@@ -34,11 +36,8 @@ const ConfigNames: { [key: string]: string; } = {
 export class ExtensionViewContainer extends React.Component<Props, State> {
   public state: State = {
     mockTriggersEnabled: false,
+    showingExtensionsViewDialog: false,
   };
-
-  private openExtensionViewDialog = () => {
-    this.props.openExtensionViewHandler();
-  }
 
   private toggleMockTriggers = () => {
     this.setState((previousState) => ({ mockTriggersEnabled: !previousState.mockTriggersEnabled }));
@@ -60,6 +59,19 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
       }
     }
     return configuration;
+  }
+
+  private openExtensionViewDialog = () => {
+    this.setState({ showingExtensionsViewDialog: true });
+  }
+
+  private createExtensionView = async (extensionViewDialogState: ExtensionViewDialogState) => {
+    await this.props.createExtensionViewHandler(extensionViewDialogState);
+    this.closeExtensionViewDialog();
+  }
+
+  private closeExtensionViewDialog = () => {
+    this.setState({ showingExtensionsViewDialog: false });
   }
 
   public render() {
@@ -95,25 +107,34 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
       'view-container-wrapper--hidden': !this.props.isDisplayed,
     });
     return (
-      <div className={wrapperClassName}>
-        <div className="trigger-bar">
-          <svg version="1.1" viewBox="0 0 44 20" height="20" width="44">
-            <g onClick={this.toggleMockTriggers}>
-              <rect className={switchClassName} rx="2" ry="2" x="0.5" y="0.5" height="19" width="43" />
-              <path className={checkClassName} d="m 6.5,9 4,4 6,-6 -1,-1 -5,5 -3,-3 z" />
-              <rect className={handleClassName} rx="2" ry="2" x="0.5" y="0.5" height="19" width="21" />
-            </g>
-          </svg>
-          <div className="trigger-bar__text">Use Mock Triggers</div>
+      <>
+        <div className={wrapperClassName}>
+          <div className="trigger-bar">
+            <svg version="1.1" viewBox="0 0 44 20" height="20" width="44">
+              <g onClick={this.toggleMockTriggers}>
+                <rect className={switchClassName} rx="2" ry="2" x="0.5" y="0.5" height="19" width="43" />
+                <path className={checkClassName} d="m 6.5,9 4,4 6,-6 -1,-1 -5,5 -3,-3 z" />
+                <rect className={handleClassName} rx="2" ry="2" x="0.5" y="0.5" height="19" width="21" />
+              </g>
+            </svg>
+            <div className="trigger-bar__text">Use Mock Triggers</div>
+          </div>
+          <div className="view-container">
+            {extensionViews}
+          </div>
+          <div>
+            <ExtensionViewButton onClick={this.openExtensionViewDialog} />
+          </div>
+          <Console />
         </div>
-        <div className="view-container">
-          {extensionViews}
-        </div>
-        <div>
-          <ExtensionViewButton onClick={this.openExtensionViewDialog} />
-        </div>
-        <Console />
-      </div>
+        {this.state.showingExtensionsViewDialog && (
+          <ExtensionViewDialog
+            extensionViews={this.props.manifest.views}
+            closeHandler={this.closeExtensionViewDialog}
+            saveHandler={this.createExtensionView}
+          />
+        )}
+      </>
     );
   }
 }

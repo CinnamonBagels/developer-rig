@@ -161,6 +161,7 @@ ShallowWrapper {
                                 "globalSegment": null,
                               }
                 }
+                createExtensionViewHandler={[Function]}
                 deleteExtensionViewHandler={[Function]}
                 extensionViews={
                         Array [
@@ -187,7 +188,6 @@ ShallowWrapper {
                 isLocal={undefined}
                 manifest={Object {}}
                 openEditViewHandler={[Function]}
-                openExtensionViewHandler={[Function]}
                 secret={undefined}
         />
 </Unknown>,
@@ -246,6 +246,7 @@ ShallowWrapper {
                                     "globalSegment": null,
                                   }
             }
+            createExtensionViewHandler={[Function]}
             deleteExtensionViewHandler={[Function]}
             extensionViews={
                         Array [
@@ -272,10 +273,8 @@ ShallowWrapper {
             isLocal={undefined}
             manifest={Object {}}
             openEditViewHandler={[Function]}
-            openExtensionViewHandler={[Function]}
             secret={undefined}
 />,
-          false,
           false,
           undefined,
         ],
@@ -336,6 +335,7 @@ ShallowWrapper {
               "channelSegments": Object {},
               "globalSegment": null,
             },
+            "createExtensionViewHandler": [Function],
             "deleteExtensionViewHandler": [Function],
             "extensionViews": Array [
               Object {
@@ -360,14 +360,12 @@ ShallowWrapper {
             "isLocal": undefined,
             "manifest": Object {},
             "openEditViewHandler": [Function],
-            "openExtensionViewHandler": [Function],
             "secret": undefined,
           },
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
-        false,
         false,
         undefined,
       ],
@@ -425,6 +423,7 @@ ShallowWrapper {
                                         "globalSegment": null,
                                       }
                     }
+                    createExtensionViewHandler={[Function]}
                     deleteExtensionViewHandler={[Function]}
                     extensionViews={
                               Array [
@@ -451,7 +450,6 @@ ShallowWrapper {
                     isLocal={undefined}
                     manifest={Object {}}
                     openEditViewHandler={[Function]}
-                    openExtensionViewHandler={[Function]}
                     secret={undefined}
           />
 </Unknown>,
@@ -510,6 +508,7 @@ ShallowWrapper {
                                           "globalSegment": null,
                                         }
               }
+              createExtensionViewHandler={[Function]}
               deleteExtensionViewHandler={[Function]}
               extensionViews={
                             Array [
@@ -536,10 +535,8 @@ ShallowWrapper {
               isLocal={undefined}
               manifest={Object {}}
               openEditViewHandler={[Function]}
-              openExtensionViewHandler={[Function]}
               secret={undefined}
 />,
-            false,
             false,
             undefined,
           ],
@@ -600,6 +597,7 @@ ShallowWrapper {
                 "channelSegments": Object {},
                 "globalSegment": null,
               },
+              "createExtensionViewHandler": [Function],
               "deleteExtensionViewHandler": [Function],
               "extensionViews": Array [
                 Object {
@@ -624,14 +622,12 @@ ShallowWrapper {
               "isLocal": undefined,
               "manifest": Object {},
               "openEditViewHandler": [Function],
-              "openExtensionViewHandler": [Function],
               "secret": undefined,
             },
             "ref": null,
             "rendered": null,
             "type": [Function],
           },
-          false,
           false,
           undefined,
         ],

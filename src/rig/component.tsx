@@ -2,7 +2,7 @@ import * as React from 'react';
 import './component.sass';
 import { RigNav } from '../rig-nav';
 import { ExtensionViewContainer } from '../extension-view-container';
-import { ExtensionViewDialog, ExtensionViewDialogState } from '../extension-view-dialog';
+import { ExtensionViewDialogState } from '../extension-view-dialog';
 import { EditViewDialog, EditViewProps } from '../edit-view-dialog';
 import { ProductManagementViewContainer } from '../product-management-container';
 import { fetchUserExtensionManifest } from '../util/extension';
@@ -35,7 +35,6 @@ interface State {
   projects: RigProject[],
   configurations?: Configurations;
   currentProject?: RigProject,
-  showingExtensionsView: boolean;
   showingCreateProjectDialog: boolean;
   viewForEdit?: RigExtensionView;
   selectedView: NavItem;
@@ -49,7 +48,6 @@ type Props = ReduxDispatchProps & ReduxStateProps;
 export class RigComponent extends React.Component<Props, State> {
   public state: State = {
     projects: [],
-    showingExtensionsView: false,
     showingCreateProjectDialog: false,
     selectedView: NavItem.ProjectOverview,
     extensionsViewContainerKey: 0,
@@ -76,20 +74,6 @@ export class RigComponent extends React.Component<Props, State> {
 
   public viewerHandler = (selectedView: NavItem) => {
     this.setState({ selectedView });
-  }
-
-  public openExtensionViewHandler = () => {
-    if (!this.state.error) {
-      this.setState({
-        showingExtensionsView: true,
-      });
-    }
-  }
-
-  public closeExtensionViewDialog = () => {
-    this.setState({
-      showingExtensionsView: false
-    });
   }
 
   public getFrameSizeFromDialog(extensionViewDialogState: ExtensionViewDialogState) {
@@ -140,7 +124,6 @@ export class RigComponent extends React.Component<Props, State> {
     this.updateExtensionViews(extensionViews);
     const { manifest, secret } = this.state.currentProject;
     await this.updateConfiguration(manifest, extensionViews, this.state.userId, secret);
-    this.closeExtensionViewDialog();
   }
 
   public deleteExtensionView = (id: string) => {
@@ -261,20 +244,13 @@ export class RigComponent extends React.Component<Props, State> {
               manifest={currentProject.manifest}
               secret={currentProject.secret}
               openEditViewHandler={this.openEditViewHandler}
-              openExtensionViewHandler={this.openExtensionViewHandler}
+              createExtensionViewHandler={this.createExtensionView}
             />}
             {this.state.showingCreateProjectDialog && <CreateProjectDialog
               userId={this.state.userId}
               closeHandler={this.closeProjectDialog}
               saveHandler={this.createProject}
             />}
-            {this.state.showingExtensionsView && (
-              <ExtensionViewDialog
-                extensionViews={currentProject.manifest.views}
-                closeHandler={this.closeExtensionViewDialog}
-                saveHandler={this.createExtensionView}
-              />
-            )}
             {this.state.viewForEdit && (
               <EditViewDialog
                 viewForEdit={this.state.viewForEdit}

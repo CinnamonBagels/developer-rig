@@ -9,8 +9,27 @@ import { RigExtensionView, RigProject } from '../core/models/rig';
 import { ExtensionViewDialogState } from '../extension-view-dialog';
 import { ExtensionAnchor, ExtensionViewType } from '../constants/extension-coordinator';
 import { DefaultMobileSize } from '../constants/mobile';
+import { DeveloperRigUserId } from '../constants/rig';
 
 let globalAny = global as any;
+
+function mockApiFunctions() {
+  return {
+    ...require.requireActual('../util/api'),
+    fetchChannelConfigurationSegments: jest.fn().mockImplementation(() => Promise.resolve({})),
+  };
+}
+jest.mock('../util/api', () => mockApiFunctions());
+const api = require.requireMock('../util/api');
+function mockIdFunctions() {
+  return {
+    ...require.requireActual('../util/id'),
+    fetchIdForUser: jest.fn().mockImplementation((_, id) => id === 'developerrig' ?
+      Promise.resolve(DeveloperRigUserId) : Promise.reject(new Error(`Cannot fetch user "${id}"`))),
+  };
+}
+jest.mock('../util/id', () => mockIdFunctions());
+const { fetchIdForUser } = require.requireMock('../util/id');
 
 localStorage.setItem('projects', '[{"manifest":{}},{"manifest":{}}]');
 
@@ -142,15 +161,14 @@ describe('<RigComponent />', () => {
     setUpProjectForTest(ExtensionAnchor.Panel);
     const { wrapper } = setupShallow();
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
+      setTimeout(async () => {
         try {
           wrapper.update();
           const instance = wrapper.instance() as RigComponent;
           instance.state.currentProject = { manifest: createExtensionManifestForTest() } as RigProject;
-          instance.openExtensionViewHandler();
-          expect(instance.state.showingExtensionsView).toBe(true);
-          instance.closeExtensionViewDialog();
-          expect(instance.state.showingExtensionsView).toBe(false);
+          await instance.createExtensionView({ channelId: 'developerrig' } as ExtensionViewDialogState);
+          wrapper.update();
+          expect(fetchIdForUser).toHaveBeenCalled();
           resolve();
         } catch (ex) {
           reject(ex.message);
