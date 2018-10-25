@@ -12,8 +12,7 @@ import { LocalStorageKeys } from '../constants/rig';
 
 interface Props {
   userId: string;
-  mustSave?: boolean;
-  closeHandler: () => void;
+  closeHandler?: () => void;
   saveHandler: (state: RigProject) => void;
 }
 
@@ -245,7 +244,7 @@ export class CreateProjectDialog extends React.Component<Props, State>{
         <div className="project-dialog__dialog">
           <div className="project-dialog__header">
             <div className="project-dialog__title">Create New Extension Project</div>
-            {!this.props.mustSave && <div className="project-dialog__escape" onClick={this.props.closeHandler}><img alt="Close" src={closeButton} /></div>}
+            {this.props.closeHandler && <div className="project-dialog__escape" onClick={this.props.closeHandler}><img alt="Close" src={closeButton} /></div>}
           </div>
           {this.state.errorMessage && <div>{this.state.errorMessage}</div>}
           <hr className="project-dialog__divider" />
@@ -367,7 +366,7 @@ export class CreateProjectDialog extends React.Component<Props, State>{
           <hr className="project-dialog__divider" />
           <div className="project-dialog__footer">
             <div className={saveClassName} onClick={this.saveHandler}>Save</div>
-            {!this.props.mustSave && (
+            {this.props.closeHandler && (
               <div className="bottom-bar__cancel" onClick={this.props.closeHandler}>Cancel</div>
             )}
           </div>

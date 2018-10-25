@@ -30,8 +30,6 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <CreateProjectDialog
-        closeHandler={[Function]}
-        mustSave={true}
         saveHandler={[Function]}
         userId={undefined}
 />,
@@ -43,8 +41,6 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "closeHandler": [Function],
-        "mustSave": true,
         "saveHandler": [Function],
         "userId": undefined,
       },
@@ -61,8 +57,6 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <CreateProjectDialog
-          closeHandler={[Function]}
-          mustSave={true}
           saveHandler={[Function]}
           userId={undefined}
 />,
@@ -74,8 +68,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "closeHandler": [Function],
-          "mustSave": true,
           "saveHandler": [Function],
           "userId": undefined,
         },

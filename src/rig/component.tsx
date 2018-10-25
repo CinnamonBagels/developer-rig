@@ -222,12 +222,7 @@ export class RigComponent extends React.Component<Props, State> {
         ) : !this.props.session ? (
           <SignInDialog />
         ) : !currentProject ? (
-          <CreateProjectDialog
-            mustSave={true}
-            userId={this.state.userId}
-            closeHandler={this.closeProjectDialog}
-            saveHandler={this.createProject}
-          />
+          <CreateProjectDialog userId={this.state.userId} saveHandler={this.createProject} />
         ) : (
           <>
             <RigNav
