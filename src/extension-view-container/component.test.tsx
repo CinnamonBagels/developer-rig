@@ -1,10 +1,10 @@
 import { setupShallowTest } from '../tests/enzyme-util/shallow';
 import { ChannelSegments } from '../core/models/rig';
-import { createExtensionForTest, createViewsForTest, createExtensionManifestForTest } from '../tests/constants/extension';
+import { createViewsForTest, createExtensionManifestForTest } from '../tests/constants/extension';
 import { ExtensionViewContainer } from './component';
 import { ExtensionAnchors } from '../constants/extension-types';
 import { ViewerTypes } from '../constants/viewer-types';
-import { ExtensionMode, ExtensionAnchor } from '../constants/extension-coordinator';
+import { ExtensionAnchor } from '../constants/extension-coordinator';
 
 const segment = {
   content: 'content',
@@ -18,14 +18,11 @@ const setupShallow = setupShallowTest(ExtensionViewContainer, () => ({
   },
   manifest: createExtensionManifestForTest(),
   secret: '',
-  mode: ExtensionMode.Viewer,
   extensionViews: createViewsForTest(0, '', ''),
   deleteExtensionViewHandler: jest.fn(),
   createExtensionViewHandler: jest.fn(),
-  openEditViewHandler: jest.fn(),
-  extension: createExtensionForTest(),
+  editViewHandler: jest.fn(),
   isLocal: true,
-  mockApiEnabled: false,
   isDisplayed: true,
 }));
 

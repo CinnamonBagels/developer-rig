@@ -163,6 +163,7 @@ ShallowWrapper {
                 }
                 createExtensionViewHandler={[Function]}
                 deleteExtensionViewHandler={[Function]}
+                editViewHandler={[Function]}
                 extensionViews={
                         Array [
                                 Object {
@@ -187,7 +188,6 @@ ShallowWrapper {
                 isDisplayed={true}
                 isLocal={undefined}
                 manifest={Object {}}
-                openEditViewHandler={[Function]}
                 secret={undefined}
         />
 </Unknown>,
@@ -248,6 +248,7 @@ ShallowWrapper {
             }
             createExtensionViewHandler={[Function]}
             deleteExtensionViewHandler={[Function]}
+            editViewHandler={[Function]}
             extensionViews={
                         Array [
                                     Object {
@@ -272,11 +273,9 @@ ShallowWrapper {
             isDisplayed={true}
             isLocal={undefined}
             manifest={Object {}}
-            openEditViewHandler={[Function]}
             secret={undefined}
 />,
           false,
-          undefined,
         ],
       },
       "ref": null,
@@ -337,6 +336,7 @@ ShallowWrapper {
             },
             "createExtensionViewHandler": [Function],
             "deleteExtensionViewHandler": [Function],
+            "editViewHandler": [Function],
             "extensionViews": Array [
               Object {
                 "channelId": "twitch",
@@ -359,7 +359,6 @@ ShallowWrapper {
             "isDisplayed": true,
             "isLocal": undefined,
             "manifest": Object {},
-            "openEditViewHandler": [Function],
             "secret": undefined,
           },
           "ref": null,
@@ -367,7 +366,6 @@ ShallowWrapper {
           "type": [Function],
         },
         false,
-        undefined,
       ],
       "type": Symbol(react.fragment),
     },
@@ -425,6 +423,7 @@ ShallowWrapper {
                     }
                     createExtensionViewHandler={[Function]}
                     deleteExtensionViewHandler={[Function]}
+                    editViewHandler={[Function]}
                     extensionViews={
                               Array [
                                         Object {
@@ -449,7 +448,6 @@ ShallowWrapper {
                     isDisplayed={true}
                     isLocal={undefined}
                     manifest={Object {}}
-                    openEditViewHandler={[Function]}
                     secret={undefined}
           />
 </Unknown>,
@@ -510,6 +508,7 @@ ShallowWrapper {
               }
               createExtensionViewHandler={[Function]}
               deleteExtensionViewHandler={[Function]}
+              editViewHandler={[Function]}
               extensionViews={
                             Array [
                                           Object {
@@ -534,11 +533,9 @@ ShallowWrapper {
               isDisplayed={true}
               isLocal={undefined}
               manifest={Object {}}
-              openEditViewHandler={[Function]}
               secret={undefined}
 />,
             false,
-            undefined,
           ],
         },
         "ref": null,
@@ -599,6 +596,7 @@ ShallowWrapper {
               },
               "createExtensionViewHandler": [Function],
               "deleteExtensionViewHandler": [Function],
+              "editViewHandler": [Function],
               "extensionViews": Array [
                 Object {
                   "channelId": "twitch",
@@ -621,7 +619,6 @@ ShallowWrapper {
               "isDisplayed": true,
               "isLocal": undefined,
               "manifest": Object {},
-              "openEditViewHandler": [Function],
               "secret": undefined,
             },
             "ref": null,
@@ -629,7 +626,6 @@ ShallowWrapper {
             "type": [Function],
           },
           false,
-          undefined,
         ],
         "type": Symbol(react.fragment),
       },

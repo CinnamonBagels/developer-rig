@@ -16,64 +16,7 @@ ShallowWrapper {
     }
     createExtensionViewHandler={[Function]}
     deleteExtensionViewHandler={[Function]}
-    extension={
-        Object {
-            "authorName": "test",
-            "bitsEnabled": false,
-            "clientId": "mockClientId",
-            "description": "description",
-            "hasChatSupport": false,
-            "iconUrl": "iconUrl",
-            "iconUrls": Object {
-              "square100": "100x100",
-            },
-            "id": "id",
-            "name": "name",
-            "requestIdentityLink": false,
-            "sku": "sku",
-            "state": "Released",
-            "summary": "summary",
-            "token": "token",
-            "vendorCode": "vendorCode",
-            "version": "0.1",
-            "views": Object {
-              "component": Object {
-                "aspectHeight": 3000,
-                "aspectWidth": 2500,
-                "canLinkExternalContent": false,
-                "viewerUrl": "https://test:8080",
-                "zoom": false,
-                "zoomPixels": 100,
-              },
-              "config": Object {
-                "canLinkExternalContent": false,
-                "viewerUrl": "https://test:8080",
-              },
-              "liveConfig": Object {
-                "canLinkExternalContent": false,
-                "viewerUrl": "https://test:8080",
-              },
-              "mobile": Object {
-                "viewerUrl": "https://test:8080",
-              },
-              "panel": Object {
-                "canLinkExternalContent": false,
-                "height": 300,
-                "viewerUrl": "https://test:8080",
-              },
-              "videoOverlay": Object {
-                "canLinkExternalContent": false,
-                "viewerUrl": "https://test:8080",
-              },
-            },
-            "whitelistedConfigUrls": Array [
-              "foo",
-            ],
-            "whitelistedPanelUrls": Array [
-              "bar",
-            ],
-          }
-    }
+    editViewHandler={[Function]}
     extensionViews={Array []}
     isDisplayed={true}
     isLocal={true}
@@ -123,9 +66,6 @@ ShallowWrapper {
             "whitelistedPanelUrls": Array [],
           }
     }
-    mockApiEnabled={false}
-    mode="viewer"
-    openEditViewHandler={[Function]}
     secret=""
 />,
   Symbol(enzyme.__renderer__): Object {
@@ -199,6 +139,7 @@ ShallowWrapper {
           <Console />
 </div>,
         false,
+        undefined,
       ],
     },
     "ref": null,
@@ -500,6 +441,7 @@ ShallowWrapper {
         "type": "div",
       },
       false,
+      undefined,
     ],
     "type": Symbol(react.fragment),
   },
@@ -568,6 +510,7 @@ ShallowWrapper {
             <Console />
 </div>,
           false,
+          undefined,
         ],
       },
       "ref": null,
@@ -869,6 +812,7 @@ ShallowWrapper {
           "type": "div",
         },
         false,
+        undefined,
       ],
       "type": Symbol(react.fragment),
     },

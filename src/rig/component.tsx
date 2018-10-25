@@ -36,7 +36,6 @@ interface State {
   configurations?: Configurations;
   currentProject?: RigProject,
   showingCreateProjectDialog: boolean;
-  viewForEdit?: RigExtensionView;
   selectedView: NavItem;
   extensionsViewContainerKey: number;
   userId?: string;
@@ -60,18 +59,6 @@ export class RigComponent extends React.Component<Props, State> {
     this.setLogin().then(this.loadProjects);
   }
 
-  public openEditViewHandler = (id: string) => {
-    this.setState({
-      viewForEdit: this.state.currentProject.extensionViews.filter((extensionView) => extensionView.id === id)[0],
-    });
-  }
-
-  public closeEditViewHandler = () => {
-    this.setState({
-      viewForEdit: null,
-    });
-  }
-
   public viewerHandler = (selectedView: NavItem) => {
     this.setState({ selectedView });
   }
@@ -84,7 +71,6 @@ export class RigComponent extends React.Component<Props, State> {
         height: extensionViewDialogState.height
       };
     }
-
     const sizes = extensionViewDialogState.extensionViewType === ExtensionViewType.Mobile ? MobileSizes : OverlaySizes;
     return sizes[extensionViewDialogState[key]];
   }
@@ -135,7 +121,6 @@ export class RigComponent extends React.Component<Props, State> {
     viewForEdit.y = newViewState.y;
     viewForEdit.orientation = newViewState.orientation;
     this.updateExtensionViews(this.state.currentProject.extensionViews);
-    this.closeEditViewHandler();
   }
 
   public createProject = async (project: RigProject) => {
@@ -243,7 +228,7 @@ export class RigComponent extends React.Component<Props, State> {
               isLocal={currentProject.isLocal}
               manifest={currentProject.manifest}
               secret={currentProject.secret}
-              openEditViewHandler={this.openEditViewHandler}
+              editViewHandler={this.editViewHandler}
               createExtensionViewHandler={this.createExtensionView}
             />}
             {this.state.showingCreateProjectDialog && <CreateProjectDialog
@@ -251,13 +236,6 @@ export class RigComponent extends React.Component<Props, State> {
               closeHandler={this.closeProjectDialog}
               saveHandler={this.createProject}
             />}
-            {this.state.viewForEdit && (
-              <EditViewDialog
-                viewForEdit={this.state.viewForEdit}
-                closeHandler={this.closeEditViewHandler}
-                saveViewHandler={this.editViewHandler}
-              />
-            )}
           </>
         )}
       </div>

@@ -10,6 +10,7 @@ import { RigExtensionView } from '../core/models/rig';
 import { ExtensionManifest } from '../core/models/manifest';
 import { createExtensionObject } from '../util/extension';
 import { ExtensionViewDialog, ExtensionViewDialogState } from '../extension-view-dialog';
+import { EditViewProps, EditViewDialog } from '../edit-view-dialog';
 
 interface Props {
   configurations: Configurations;
@@ -19,13 +20,14 @@ interface Props {
   manifest: ExtensionManifest;
   secret: string;
   deleteExtensionViewHandler: (id: string) => void;
-  openEditViewHandler?: (id: string) => void;
+  editViewHandler: (viewForEdit: RigExtensionView, newViewState: EditViewProps) => void;
   createExtensionViewHandler: (extensionViewDialogState: ExtensionViewDialogState) => Promise<void>;
 }
 
 interface State {
   mockTriggersEnabled: boolean;
   showingExtensionsViewDialog: boolean;
+  viewForEdit?: RigExtensionView;
 }
 
 const ConfigNames: { [key: string]: string; } = {
@@ -61,6 +63,21 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
     return configuration;
   }
 
+  private openEditViewDialog = (id: string) => {
+    this.setState({
+      viewForEdit: this.props.extensionViews.filter((extensionView) => extensionView.id === id)[0],
+    });
+  }
+
+  private saveView = (viewForEdit: RigExtensionView, newViewState: EditViewProps) => {
+    this.props.editViewHandler(viewForEdit, newViewState);
+    this.closeEditViewDialog();
+  }
+
+  private closeEditViewDialog = () => {
+    this.setState({ viewForEdit: null });
+  }
+
   private openExtensionViewDialog = () => {
     this.setState({ showingExtensionsViewDialog: true });
   }
@@ -90,7 +107,7 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
             extension={extension}
             role={view.mode === ExtensionMode.Viewer ? view.role : ConfigNames[view.mode]}
             isLocal={this.props.isLocal}
-            openEditViewHandler={this.props.openEditViewHandler}
+            openEditViewHandler={this.openEditViewDialog}
             deleteViewHandler={this.props.deleteExtensionViewHandler}
             mockApiEnabled={this.state.mockTriggersEnabled}
           />
@@ -132,6 +149,13 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
             extensionViews={this.props.manifest.views}
             closeHandler={this.closeExtensionViewDialog}
             saveHandler={this.createExtensionView}
+          />
+        )}
+        {this.state.viewForEdit && (
+          <EditViewDialog
+            viewForEdit={this.state.viewForEdit}
+            closeHandler={this.closeEditViewDialog}
+            saveViewHandler={this.saveView}
           />
         )}
       </>

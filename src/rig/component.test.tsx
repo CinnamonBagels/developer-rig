@@ -113,26 +113,6 @@ describe('<RigComponent />', () => {
     });
   });
 
-  it('toggles state when edit dialog is opened/closed', () => {
-    setUpProjectForTest(ExtensionAnchor.Component);
-    const { wrapper } = setupShallow();
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          wrapper.update();
-          const instance = wrapper.instance() as RigComponent;
-          instance.openEditViewHandler('1');
-          expect(instance.state.viewForEdit).toBeTruthy();
-          instance.closeEditViewHandler();
-          expect(instance.state.viewForEdit).toBe(null);
-          resolve();
-        } catch (ex) {
-          reject(ex.message);
-        }
-      });
-    });
-  });
-
   it('edit changes the view and sets them correctly', () => {
     setUpProjectForTest(ExtensionAnchor.Component);
     const { wrapper } = setupShallow();
@@ -142,13 +122,10 @@ describe('<RigComponent />', () => {
           wrapper.update();
           const instance = wrapper.instance() as RigComponent;
           const views = instance.state.currentProject.extensionViews;
-          const editedView = views.filter((element: RigExtensionView) => element.id === '1')[0];
-          instance.openEditViewHandler('1');
-          expect(instance.state.viewForEdit).toBe(editedView);
+          const editedView = views[0];
           instance.editViewHandler(editedView, { x: 25, y: 25 });
           expect(editedView.x).toEqual(25);
           expect(editedView.y).toEqual(25);
-          expect(instance.state.viewForEdit).toBe(null);
           resolve();
         } catch (ex) {
           reject(ex.message);
