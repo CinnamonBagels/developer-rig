@@ -133,6 +133,10 @@ ShallowWrapper {
                                       "features": Object {
                                         "isChatEnabled": true,
                                       },
+                                      "frameSize": Object {
+                                        "height": 99,
+                                        "width": 99,
+                                      },
                                       "id": "1",
                                       "isPopout": false,
                                       "linked": false,
@@ -170,6 +174,10 @@ ShallowWrapper {
                                   "channelId": "twitch",
                                   "features": Object {
                                     "isChatEnabled": true,
+                                  },
+                                  "frameSize": Object {
+                                    "height": 99,
+                                    "width": 99,
                                   },
                                   "id": "1",
                                   "isPopout": false,
@@ -215,6 +223,10 @@ ShallowWrapper {
                                           "features": Object {
                                             "isChatEnabled": true,
                                           },
+                                          "frameSize": Object {
+                                            "height": 99,
+                                            "width": 99,
+                                          },
                                           "id": "1",
                                           "isPopout": false,
                                           "linked": false,
@@ -255,6 +267,10 @@ ShallowWrapper {
                                       "channelId": "twitch",
                                       "features": Object {
                                         "isChatEnabled": true,
+                                      },
+                                      "frameSize": Object {
+                                        "height": 99,
+                                        "width": 99,
                                       },
                                       "id": "1",
                                       "isPopout": false,
@@ -297,6 +313,10 @@ ShallowWrapper {
                     "channelId": "twitch",
                     "features": Object {
                       "isChatEnabled": true,
+                    },
+                    "frameSize": Object {
+                      "height": 99,
+                      "width": 99,
                     },
                     "id": "1",
                     "isPopout": false,
@@ -342,6 +362,10 @@ ShallowWrapper {
                 "channelId": "twitch",
                 "features": Object {
                   "isChatEnabled": true,
+                },
+                "frameSize": Object {
+                  "height": 99,
+                  "width": 99,
                 },
                 "id": "1",
                 "isPopout": false,
@@ -393,6 +417,10 @@ ShallowWrapper {
                                               "features": Object {
                                                 "isChatEnabled": true,
                                               },
+                                              "frameSize": Object {
+                                                "height": 99,
+                                                "width": 99,
+                                              },
                                               "id": "1",
                                               "isPopout": false,
                                               "linked": false,
@@ -430,6 +458,10 @@ ShallowWrapper {
                                           "channelId": "twitch",
                                           "features": Object {
                                             "isChatEnabled": true,
+                                          },
+                                          "frameSize": Object {
+                                            "height": 99,
+                                            "width": 99,
                                           },
                                           "id": "1",
                                           "isPopout": false,
@@ -475,6 +507,10 @@ ShallowWrapper {
                                                 "features": Object {
                                                   "isChatEnabled": true,
                                                 },
+                                                "frameSize": Object {
+                                                  "height": 99,
+                                                  "width": 99,
+                                                },
                                                 "id": "1",
                                                 "isPopout": false,
                                                 "linked": false,
@@ -515,6 +551,10 @@ ShallowWrapper {
                                             "channelId": "twitch",
                                             "features": Object {
                                               "isChatEnabled": true,
+                                            },
+                                            "frameSize": Object {
+                                              "height": 99,
+                                              "width": 99,
                                             },
                                             "id": "1",
                                             "isPopout": false,
@@ -557,6 +597,10 @@ ShallowWrapper {
                       "channelId": "twitch",
                       "features": Object {
                         "isChatEnabled": true,
+                      },
+                      "frameSize": Object {
+                        "height": 99,
+                        "width": 99,
                       },
                       "id": "1",
                       "isPopout": false,
@@ -602,6 +646,10 @@ ShallowWrapper {
                   "channelId": "twitch",
                   "features": Object {
                     "isChatEnabled": true,
+                  },
+                  "frameSize": Object {
+                    "height": 99,
+                    "width": 99,
                   },
                   "id": "1",
                   "isPopout": false,
