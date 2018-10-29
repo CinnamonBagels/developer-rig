@@ -1,13 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ExtensionViewContainer /> when in viewer mode renders correctly 1`] = `
+exports[`<ExtensionViewContainer /> renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ExtensionViewContainer
     configurations={
         Object {
-            "channelSegments": Object {},
+            "channelSegments": Object {
+              "twitch": Object {
+                "broadcaster": Object {
+                  "content": "content",
+                  "version": "version",
+                },
+                "developer": Object {
+                  "content": "content",
+                  "version": "version",
+                },
+              },
+            },
             "globalSegment": Object {
               "content": "content",
               "version": "version",

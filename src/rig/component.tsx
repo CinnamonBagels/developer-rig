@@ -59,7 +59,7 @@ export class RigComponent extends React.Component<Props, State> {
     this.setLogin().then(this.loadProjects);
   }
 
-  public viewerHandler = (selectedView: NavItem) => {
+  public selectView = (selectedView: NavItem) => {
     this.setState({ selectedView });
   }
 
@@ -116,7 +116,7 @@ export class RigComponent extends React.Component<Props, State> {
     this.updateExtensionViews(this.state.currentProject.extensionViews.filter(element => element.id !== id));
   }
 
-  public editViewHandler = (viewForEdit: RigExtensionView, newViewState: EditViewProps) => {
+  public editView = (viewForEdit: RigExtensionView, newViewState: EditViewProps) => {
     viewForEdit.x = newViewState.x;
     viewForEdit.y = newViewState.y;
     viewForEdit.orientation = newViewState.orientation;
@@ -201,7 +201,7 @@ export class RigComponent extends React.Component<Props, State> {
               manifest={currentProject.manifest}
               selectedView={this.state.selectedView}
               deleteProject={this.deleteProject}
-              viewerHandler={this.viewerHandler}
+              viewerHandler={this.selectView}
               error={this.state.error}
             />
             {this.state.selectedView === NavItem.ProductManagement && <ProductManagementViewContainer clientId={currentProject.manifest.id} />}
@@ -228,7 +228,7 @@ export class RigComponent extends React.Component<Props, State> {
               isLocal={currentProject.isLocal}
               manifest={currentProject.manifest}
               secret={currentProject.secret}
-              editViewHandler={this.editViewHandler}
+              editViewHandler={this.editView}
               createExtensionViewHandler={this.createExtensionView}
             />}
             {this.state.showingCreateProjectDialog && <CreateProjectDialog

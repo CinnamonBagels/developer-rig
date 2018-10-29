@@ -123,7 +123,7 @@ describe('<RigComponent />', () => {
           const instance = wrapper.instance() as RigComponent;
           const views = instance.state.currentProject.extensionViews;
           const editedView = views[0];
-          instance.editViewHandler(editedView, { x: 25, y: 25 });
+          instance.editView(editedView, { x: 25, y: 25 });
           expect(editedView.x).toEqual(25);
           expect(editedView.y).toEqual(25);
           resolve();
@@ -163,7 +163,7 @@ describe('<RigComponent />', () => {
           wrapper.update();
           wrapper.setState({ currentProject: { manifest: createExtensionManifestForTest() } as RigProject });
           const instance = wrapper.instance() as RigComponent;
-          instance.viewerHandler(NavItem.ExtensionViews);
+          instance.selectView(NavItem.ExtensionViews);
           expect(instance.state.selectedView).toBe(NavItem.ExtensionViews);
           resolve();
         } catch (ex) {

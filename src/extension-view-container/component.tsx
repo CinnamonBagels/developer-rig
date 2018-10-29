@@ -14,14 +14,14 @@ import { EditViewProps, EditViewDialog } from '../edit-view-dialog';
 
 interface Props {
   configurations: Configurations;
-  isDisplayed: boolean;
   extensionViews: RigExtensionView[];
+  isDisplayed: boolean;
   isLocal: boolean;
   manifest: ExtensionManifest;
   secret: string;
+  createExtensionViewHandler: (extensionViewDialogState: ExtensionViewDialogState) => Promise<void>;
   deleteExtensionViewHandler: (id: string) => void;
   editViewHandler: (viewForEdit: RigExtensionView, newViewState: EditViewProps) => void;
-  createExtensionViewHandler: (extensionViewDialogState: ExtensionViewDialogState) => Promise<void>;
 }
 
 interface State {
