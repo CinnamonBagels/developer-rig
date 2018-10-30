@@ -13,7 +13,6 @@ const defaultGenerator = () => ({
   liveConfigHandler: jest.fn(),
   openProductManagementHandler: jest.fn(),
   selectedView: NavItem.ExtensionViews,
-  error: '',
   manifest: createExtensionManifestForTest(),
   session: { displayName: 'test', login: 'test', id: 'test', profileImageUrl: 'test.png', authToken: 'test' },
   mockApiEnabled: false,
@@ -24,21 +23,12 @@ const defaultGenerator = () => ({
   selectProject: (_projectIndex: number) => {},
 });
 
-
 const setupShallow = setupShallowTest(RigNavComponent, defaultGenerator);
 
 describe('<RigNavComponent />', () => {
   it('renders correctly', () => {
     const { wrapper } = setupShallow();
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it('renders an error', () => {
-    const { wrapper } = setupShallow({
-      error: 'test error',
-    });
-
-    expect(wrapper.find('.top-nav-error').text().trim()).toBe('test error');
   });
 
   it('invokes deleteProject', () => {

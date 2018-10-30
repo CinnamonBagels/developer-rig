@@ -11,7 +11,6 @@ export interface PublicProps {
   manifest: ExtensionManifest,
   viewerHandler: Function,
   selectedView: NavItem,
-  error: string,
   deleteProject: () => void,
 }
 
@@ -52,13 +51,6 @@ export class RigNavComponent extends React.Component<Props> {
       'top-nav-item__disabled': manifest && manifest.configurationLocation !== 'hosted',
       'top-nav-item__selected': selectedView === NavItem.ConfigurationService,
     });
-    if (this.props.error) {
-      return (
-        <div className='top-nav-error'>
-          <a> {this.props.error} </a>
-        </div>
-      );
-    } else {
       return (
         <div className='top-nav'>
           <div className='personal-bar'>
@@ -92,7 +84,6 @@ export class RigNavComponent extends React.Component<Props> {
           </div>
         </div>
       );
-    }
   }
 
   private selectConfigurationServiceView = () => {

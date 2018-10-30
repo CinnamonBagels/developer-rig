@@ -202,7 +202,6 @@ export class RigComponent extends React.Component<Props, State> {
               selectedView={this.state.selectedView}
               deleteProject={this.deleteProject}
               viewerHandler={this.selectView}
-              error={this.state.error}
             />
             {this.state.selectedView === NavItem.ProductManagement && <ProductManagementViewContainer clientId={currentProject.manifest.id} />}
             {this.state.selectedView === NavItem.ProjectOverview && <ProjectView
