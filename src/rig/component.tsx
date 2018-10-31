@@ -199,18 +199,18 @@ export class RigComponent extends React.Component<Props, State> {
               deleteProject={this.deleteProject}
             />} />
             {this.props.session && this.props.session.login && currentProject.manifest && currentProject.manifest.bitsEnabled &&
-              <Route path={`/${NavItem.ProductManagement}`} render={() => (
+              <Route exact path={NavItem.ProductManagement} render={() => (
                 <ProductManagementViewContainer clientId={currentProject.manifest.id} />
               )}
             />}
-            <Route exact path="/" render={() => <ProjectView
+            <Route exact path={NavItem.ProjectOverview} render={() => <ProjectView
               key={`ProjectView${this.currentProjectIndex}`}
               rigProject={currentProject}
               userId={this.state.userId}
               onChange={this.updateProject}
               refreshViews={this.refreshViews}
             />} />
-            {configurations && <Route path={`/${NavItem.ConfigurationService}`} render={() => <ConfigurationServiceView
+            {configurations && <Route exact path={NavItem.ConfigurationService} render={() => <ConfigurationServiceView
               authToken={this.props.session.authToken}
               configurations={configurations}
               rigProject={currentProject}
@@ -220,7 +220,7 @@ export class RigComponent extends React.Component<Props, State> {
             {configurations && <Route path="/" render={({ location }) => <ExtensionViewContainer
               key={`ExtensionViewContainer${this.state.extensionsViewContainerKey}`}
               configurations={configurations}
-              isDisplayed={location.pathname === `/${NavItem.ExtensionViews}`}
+              isDisplayed={location.pathname === NavItem.ExtensionViews}
               deleteExtensionViewHandler={this.deleteExtensionView}
               extensionViews={currentProject.extensionViews}
               isLocal={currentProject.isLocal}

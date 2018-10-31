@@ -47,16 +47,16 @@ export class RigNavComponent extends React.Component<Props> {
             </div>}
           </div>
           <div className='top-nav__item-container'>
-            <NavLink className="offset top-nav-item" to="/" exact={true} activeClassName="top-nav-item__selected">
+            <NavLink className="offset top-nav-item" to={NavItem.ProjectOverview} exact={true} activeClassName="top-nav-item__selected">
               Project Overview
             </NavLink>
-            <NavLink className="offset top-nav-item" to={`/${NavItem.ExtensionViews}`} activeClassName="top-nav-item__selected">
+            <NavLink className="offset top-nav-item" to={NavItem.ExtensionViews} exact={true} activeClassName="top-nav-item__selected">
               Extension Views
             </NavLink>
-            <NavLink className={productManagementClass} to={`/${NavItem.ProductManagement}`} activeClassName="top-nav-item__selected">
+            <NavLink className={productManagementClass} to={NavItem.ProductManagement} exact={true} activeClassName="top-nav-item__selected">
               Manage Bits Products
             </NavLink>
-            <NavLink className={configurationServiceClass} to={`/${NavItem.ConfigurationService}`} activeClassName="top-nav-item__selected">
+            <NavLink className={configurationServiceClass} to={NavItem.ConfigurationService} exact={true} activeClassName="top-nav-item__selected">
               Configuration Service
             </NavLink>
           </div>
