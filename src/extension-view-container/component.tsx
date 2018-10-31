@@ -41,6 +41,13 @@ export class ExtensionViewContainer extends React.Component<Props, State> {
     showingExtensionsViewDialog: false,
   };
 
+  static getDerivedStateFromProps(props: Props, _state: State): Partial<State> {
+    if (!props.isDisplayed) {
+      return { showingExtensionsViewDialog: false, viewForEdit: null };
+    }
+    return null;
+  }
+
   private toggleMockTriggers = () => {
     this.setState((previousState) => ({ mockTriggersEnabled: !previousState.mockTriggersEnabled }));
   }
